@@ -1,0 +1,54 @@
+[
+  {
+    "id": "UC5pWXm-mYXUjY7zTTeA3gjQ",
+    "name": "STARs",
+    "webhookKey": "STRATEGY_WEBHOOK"
+  },
+  {
+    "id": "UC4p_I53EXjJ_lqs-YhLbJSg",
+    "name": "Ekwaak",
+    "webhookKey": "STRATEGY_WEBHOOK"
+  },
+  {
+    "id": "UC1Z0dlgDaYSpNLWHeYzO1Gg",
+    "name": "DsGaming",
+    "webhookKey": "STRATEGY_WEBHOOK"
+  },
+  {
+    "id": "UCWcAaw5gtYYfaEe2_ctB6wg",
+    "name": "Opi",
+    "webhookKey": "STRATEGY_WEBHOOK"
+  },
+  {
+    "id": "UCkc0yONm6b5F-cK_NgpF9YQ",
+    "name": "LegendClashLover",
+    "webhookKey": "BASE_WEBHOOK",
+    "message": "快去複製這個陣容！",
+    "showDescriptionUrls": true,
+    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+  },
+  {
+    "id": "UC7cXn9It8O8-JARuYtTSlUA",
+    "name": "BaitBreak",
+    "webhookKey": "BASE_WEBHOOK",
+    "message": "快去複製這個陣容！",
+    "showDescriptionUrls": true,
+    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+  },
+  {
+    "id": "UCYBFH5FdpMWL86ee4FDLi9g",
+    "name": "GamingDynasty",
+    "webhookKey": "BASE_WEBHOOK",
+    "message": "快去複製這個陣容！",
+    "showDescriptionUrls": true,
+    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+  },
+  {
+    "id": "UCQJJGSWnPUCb8uKV_MoJeOA",
+    "name": "BlueprintCoCCodeBLUE",
+    "webhookKey": "BASE_WEBHOOK",
+    "message": "快去複製這個陣容！",
+    "showDescriptionUrls": true,
+    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+  }
+]

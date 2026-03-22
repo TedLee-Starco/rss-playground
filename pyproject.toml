@@ -1,0 +1,6 @@
+[project]
+name = "rss-playground"
+version = "0.1.0"
+description = "YouTube channel tracker"
+requires-python = ">=3.12"
+dependencies = []

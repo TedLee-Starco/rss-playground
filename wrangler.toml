@@ -1,0 +1,13 @@
+name = "yt-tracker"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+workers_dev = false
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[kv_namespaces]]
+binding = "STATE"
+id = "e2e661703545421989dfbe96d8e2ef0e"
+
+# Set via: wrangler secret put DISCORD_WEBHOOK_URL
