@@ -17,7 +17,7 @@ jobs:
       - run: npx tsc --noEmit
 
   deploy:
-    need: typecheck
+    needs: typecheck
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
