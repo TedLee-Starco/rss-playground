@@ -18,3 +18,5 @@ node_modules/
 .dev.vars
 token.json
 client_secret.json
+
+.ruff_cache
