@@ -25,7 +25,7 @@
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
     "showDescriptionUrls": true,
-    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+    "descriptionUrlFilter": "https://link.clashofclans.com/en"
   },
   {
     "id": "UC7cXn9It8O8-JARuYtTSlUA",
@@ -33,7 +33,7 @@
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
     "showDescriptionUrls": true,
-    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+    "descriptionUrlFilter": "https://link.clashofclans.com/en"
   },
   {
     "id": "UCYBFH5FdpMWL86ee4FDLi9g",
@@ -41,7 +41,7 @@
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
     "showDescriptionUrls": true,
-    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+    "descriptionUrlFilter": "https://link.clashofclans.com/en"
   },
   {
     "id": "UCQJJGSWnPUCb8uKV_MoJeOA",
@@ -49,6 +49,6 @@
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
     "showDescriptionUrls": true,
-    "descriptionUrlFilter": "https://link.clashofclans.com/en/"
+    "descriptionUrlFilter": "https://link.clashofclans.com/en"
   }
 ]

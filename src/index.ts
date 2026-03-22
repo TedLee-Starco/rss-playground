@@ -62,7 +62,7 @@ function extractUrls(text: string): string[] {
   return [...new Set(text.match(/https?:\/\/\S+/g) ?? [])];
 }
 
-async function fetchWithTimeout(url: string, timeoutMs = 5000): Promise<Response> {
+async function fetchWithTimeout(url: string, timeoutMs = 10000): Promise<Response> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -119,15 +119,18 @@ async function sendDiscordNotification(
 
   if (descriptionUrls.length > 0) {
     lines.push(` ---------------------------------------------------------------------------------------------------------`);
-    lines.push(...descriptionUrls.map((url, i) => `✅ Base #${i + 1}： <${url}>`));
+    lines.push(...descriptionUrls.slice(0, 10).map((url, i) => `✅ Base #${i + 1}： <${url}>`));
   }
 
   lines.push(` ---------------------------------------------------------------------------------------------------------`);
 
+  const content = lines.join("\n");
+  console.log(`Message length: ${content.length}`);
+
   const response = await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ content: lines.join("\n") }),
+    body: JSON.stringify({ content }),
   });
 
   if (!response.ok) {
