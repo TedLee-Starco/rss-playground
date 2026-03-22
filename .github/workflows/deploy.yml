@@ -68,7 +68,7 @@ jobs:
       - run: npx tsc --noEmit
 
   deploy:
-    needs: typecheck
+    needs: [pycheck, tscheck]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
