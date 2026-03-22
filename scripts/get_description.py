@@ -7,6 +7,7 @@ Or store your key in a .env file:
     echo "YOUTUBE_API_KEY=AIza..." > .env
     uv run python scripts/get_description.py <video_id>
 """
+
 import json
 import os
 import sys
