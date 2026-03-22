@@ -29,7 +29,7 @@
   hooks = [
     {
       id = "tsc",
-      name = "typeScript type check",
+      name = "ts type check",
       entry = "npx tsc --noEmit",
       language = "system",
       files = "\\.ts$",
