@@ -191,13 +191,11 @@ export default {
     env: Env,
     _ctx: ExecutionContext
   ): Promise<void> {
-    await Promise.all(
-      (channels as Channel[]).map((channel) =>
-        checkChannel(channel, env).catch((err) =>
-          console.error(`Error checking ${channel.id}:`, err)
-        )
-      )
-    );
+    for (const channel of channels as Channel[]) {
+      await checkChannel(channel, env).catch((err) =>
+        console.error(`Error checking ${channel.id}:`, err)
+      );
+    }
   },
 
   async fetch(req: Request, env: Env): Promise<Response> {
