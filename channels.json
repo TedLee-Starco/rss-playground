@@ -50,5 +50,40 @@
     "message": "快去複製這個陣容！",
     "showDescriptionUrls": true,
     "descriptionUrlFilter": "https://link.clashofclans.com/en"
+  },
+  {
+    "id": "UCVdM9zFoNvKJlA-ksTba3dA",
+    "name": "金雄KANEOVIDEO",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": "UC85aYbNSFjsJdxfpxgQr8tA",
+    "name": "JudoSlothGaming",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": "UCdbJ2mWd-P3YynTplv-FhwQ",
+    "name": "不細工JK",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": "UCcm1TNVyJj-p9m2VFTrhY8Q",
+    "name": "阿德老師",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": "UCS4ji-WXpf9FFOot87969Zw",
+    "name": "烏龜Turtle",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": "UCrlinknc6mz8B4nUOymvVKQ",
+    "name": "ChiefRianGaming",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": "UCIg-2u0bICI4JmUiZpr5NSw",
+    "name": "BangSkot",
+    "webhookKey": "CHANNEL_WEBHOOK"
   }
 ]

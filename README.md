@@ -75,6 +75,7 @@ npx wrangler kv namespace create STATE
 npx wrangler secret put YOUTUBE_API_KEY   # YouTube Data API v3 Key
 npx wrangler secret put STRATEGY_WEBHOOK         # Discord Webhook URL（對應 channels.json 的 webhookKey）
 npx wrangler secret put BASE_WEBHOOK         # 第二個 Discord Webhook URL（如有）
+npx wrangler secret put CHANNEL_WEBHOOK
 ```
 
 **4. 開通 workers.dev subdomain（一次性）**
@@ -100,6 +101,7 @@ npm run deploy
 YOUTUBE_API_KEY=AIza...
 STRATEGY_WEBHOOK=https://discord.com/api/webhooks/...
 BASE_WEBHOOK=https://discord.com/api/webhooks/...
+CHANNEL_WEBHOOK=https://discord.com/api/webhooks/...
 ```
 
 啟動本地 dev server：
