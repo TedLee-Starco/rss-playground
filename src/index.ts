@@ -110,7 +110,6 @@ async function sendDiscordNotification(
 ): Promise<void> {
   const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
   const lines = [
-    `@everyone`,
     `⚔️ ${channelName} 發布了最新的COC影片!!!`,
     `📌 影片標題： ${video.title}`,
     `🔗 觀看連結： ${videoUrl}`,
