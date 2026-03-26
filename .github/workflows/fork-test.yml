@@ -1,0 +1,13 @@
+name: test fork event
+
+on:
+  fork
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "fork triggered"
+      - run: echo "${{ github.event.repository.full_name }}"
+      - run: echo "${{ github.event.forkee.full_name }}"
+      - run: echo "${{ github.event.sender.login }}"
