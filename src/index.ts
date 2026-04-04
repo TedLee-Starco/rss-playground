@@ -1,7 +1,8 @@
 import channels from "../channels.json";
 
 interface Channel {
-  id: string;
+  id: number;
+  channelId: string;
   name: string;
   webhookKey: string;
   message?: string;
@@ -138,7 +139,7 @@ async function sendDiscordNotification(
 }
 
 async function checkChannel(channel: Channel, env: Env): Promise<void> {
-  const response = await fetchWithTimeout(`${YOUTUBE_RSS_BASE}${channel.id}`);
+  const response = await fetchWithTimeout(`${YOUTUBE_RSS_BASE}${channel.channelId}`);
   if (!response.ok) {
     console.error(`Failed to fetch RSS for ${channel.name}: ${response.status}`);
     return;
@@ -150,7 +151,7 @@ async function checkChannel(channel: Channel, env: Env): Promise<void> {
     return;
   }
 
-  const lastVideoId = await env.STATE.get(channel.id);
+  const lastVideoId = await env.STATE.get(channel.channelId);
 
   if (latest.videoId === lastVideoId) return;
 
@@ -159,7 +160,7 @@ async function checkChannel(channel: Channel, env: Env): Promise<void> {
 
     if (details && details.durationSeconds <= 120) {
       console.log(`Skipping short: ${latest.title}`);
-      await env.STATE.put(channel.id, latest.videoId);
+      await env.STATE.put(channel.channelId, latest.videoId);
       return;
     }
 
@@ -182,7 +183,7 @@ async function checkChannel(channel: Channel, env: Env): Promise<void> {
     console.log(`First run for ${channel.name}, storing ${latest.videoId}`);
   }
 
-  await env.STATE.put(channel.id, latest.videoId);
+  await env.STATE.put(channel.channelId, latest.videoId);
 }
 
 export default {
@@ -193,7 +194,7 @@ export default {
   ): Promise<void> {
     for (const channel of channels as Channel[]) {
       await checkChannel(channel, env).catch((err) =>
-        console.error(`Error checking ${channel.id}:`, err)
+        console.error(`Error checking ${channel.channelId}:`, err)
       );
     }
   },
@@ -201,15 +202,22 @@ export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url);
     if (url.pathname === "/seed-test") {
+      const targetId = url.searchParams.get("id");
+      const targetChannelId = url.searchParams.get("channelId");
       const targetName = url.searchParams.get("name");
-      const list = (channels as Channel[]).filter(
-        (ch) => !targetName || ch.name === targetName
-      );
-      if (targetName && list.length === 0) {
-        return new Response(`Channel "${targetName}" not found.`, { status: 404 });
+      const hasFilter = targetId || targetChannelId || targetName;
+      const list = (channels as Channel[]).filter((ch) => {
+        if (!hasFilter) return true;
+        if (targetId && ch.id === Number(targetId)) return true;
+        if (targetChannelId && ch.channelId === targetChannelId) return true;
+        if (targetName && ch.name === targetName) return true;
+        return false;
+      });
+      if (hasFilter && list.length === 0) {
+        return new Response(`Channel not found: ${hasFilter}`, { status: 404 });
       }
       for (const ch of list) {
-        await env.STATE.put(ch.id, "fake-old-video-id");
+        await env.STATE.put(ch.channelId, "fake-old-video-id");
       }
       const seeded = list.map((ch) => ch.name).join(", ");
       return new Response(`KV seeded for: ${seeded}. Now trigger /__scheduled to test Discord.`);

@@ -1,26 +1,31 @@
 [
   {
-    "id": "UC5pWXm-mYXUjY7zTTeA3gjQ",
+    "id": 1,
+    "channelId": "UC5pWXm-mYXUjY7zTTeA3gjQ",
     "name": "STARs",
     "webhookKey": "STRATEGY_WEBHOOK"
   },
   {
-    "id": "UC4p_I53EXjJ_lqs-YhLbJSg",
+    "id": 2,
+    "channelId": "UC4p_I53EXjJ_lqs-YhLbJSg",
     "name": "Ekwaak",
     "webhookKey": "STRATEGY_WEBHOOK"
   },
   {
-    "id": "UC1Z0dlgDaYSpNLWHeYzO1Gg",
+    "id": 3,
+    "channelId": "UC1Z0dlgDaYSpNLWHeYzO1Gg",
     "name": "DsGaming",
     "webhookKey": "STRATEGY_WEBHOOK"
   },
   {
-    "id": "UCWcAaw5gtYYfaEe2_ctB6wg",
+    "id": 4,
+    "channelId": "UCWcAaw5gtYYfaEe2_ctB6wg",
     "name": "Opi",
     "webhookKey": "STRATEGY_WEBHOOK"
   },
   {
-    "id": "UCkc0yONm6b5F-cK_NgpF9YQ",
+    "id": 5,
+    "channelId": "UCkc0yONm6b5F-cK_NgpF9YQ",
     "name": "LegendClashLover",
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
@@ -28,7 +33,8 @@
     "descriptionUrlFilter": "https://link.clashofclans.com/en"
   },
   {
-    "id": "UC7cXn9It8O8-JARuYtTSlUA",
+    "id": 6,
+    "channelId": "UC7cXn9It8O8-JARuYtTSlUA",
     "name": "BaitBreak",
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
@@ -36,7 +42,8 @@
     "descriptionUrlFilter": "https://link.clashofclans.com/en"
   },
   {
-    "id": "UCYBFH5FdpMWL86ee4FDLi9g",
+    "id": 7,
+    "channelId": "UCYBFH5FdpMWL86ee4FDLi9g",
     "name": "GamingDynasty",
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
@@ -44,7 +51,8 @@
     "descriptionUrlFilter": "https://link.clashofclans.com/en"
   },
   {
-    "id": "UCQJJGSWnPUCb8uKV_MoJeOA",
+    "id": 8,
+    "channelId": "UCQJJGSWnPUCb8uKV_MoJeOA",
     "name": "BlueprintCoCCodeBLUE",
     "webhookKey": "BASE_WEBHOOK",
     "message": "快去複製這個陣容！",
@@ -52,38 +60,57 @@
     "descriptionUrlFilter": "https://link.clashofclans.com/en"
   },
   {
-    "id": "UCVdM9zFoNvKJlA-ksTba3dA",
+    "id": 9,
+    "channelId": "UCVdM9zFoNvKJlA-ksTba3dA",
     "name": "金雄KANEOVIDEO",
     "webhookKey": "CHANNEL_WEBHOOK"
   },
   {
-    "id": "UC85aYbNSFjsJdxfpxgQr8tA",
+    "id": 10,
+    "channelId": "UC85aYbNSFjsJdxfpxgQr8tA",
     "name": "JudoSlothGaming",
     "webhookKey": "CHANNEL_WEBHOOK"
   },
   {
-    "id": "UCdbJ2mWd-P3YynTplv-FhwQ",
+    "id": 11,
+    "channelId": "UCdbJ2mWd-P3YynTplv-FhwQ",
     "name": "不細工JK",
     "webhookKey": "CHANNEL_WEBHOOK"
   },
   {
-    "id": "UCcm1TNVyJj-p9m2VFTrhY8Q",
+    "id": 12,
+    "channelId": "UCcm1TNVyJj-p9m2VFTrhY8Q",
     "name": "阿德老師",
     "webhookKey": "CHANNEL_WEBHOOK"
   },
   {
-    "id": "UCS4ji-WXpf9FFOot87969Zw",
+    "id": 13,
+    "channelId": "UCS4ji-WXpf9FFOot87969Zw",
     "name": "烏龜Turtle",
     "webhookKey": "CHANNEL_WEBHOOK"
   },
   {
-    "id": "UCrlinknc6mz8B4nUOymvVKQ",
+    "id": 14,
+    "channelId": "UCrlinknc6mz8B4nUOymvVKQ",
     "name": "ChiefRianGaming",
     "webhookKey": "CHANNEL_WEBHOOK"
   },
   {
-    "id": "UCIg-2u0bICI4JmUiZpr5NSw",
+    "id": 15,
+    "channelId": "UCIg-2u0bICI4JmUiZpr5NSw",
     "name": "BangSkot",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": 16,
+    "channelId": "UCZlbIQCKxAlw5Esu1ghq5gQ",
+    "name": "Js森",
+    "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": 17,
+    "channelId": "UCLKKvlo0yK8OgWvjCiZQ3sA",
+    "name": "iTzu",
     "webhookKey": "CHANNEL_WEBHOOK"
   }
 ]
