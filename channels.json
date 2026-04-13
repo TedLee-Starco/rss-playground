@@ -112,5 +112,32 @@
     "channelId": "UCLKKvlo0yK8OgWvjCiZQ3sA",
     "name": "iTzu",
     "webhookKey": "CHANNEL_WEBHOOK"
+  },
+  {
+    "id": 18,
+    "channelId": "UCOQRvZJnVZERuFfnVsjsOkA",
+    "name": "CoolGamerz",
+    "webhookKey": "BASE_WEBHOOK",
+    "message": "快去複製這個陣容！",
+    "showDescriptionUrls": true,
+    "descriptionUrlFilter": "https://link.clashofclans.com/en"
+  },
+  {
+    "id": 19,
+    "channelId": "UCpc5jkH0iQaUDhVrVa0C1EA",
+    "name": "ApexGaming",
+    "webhookKey": "BASE_WEBHOOK",
+    "message": "快去複製這個陣容！",
+    "showDescriptionUrls": true,
+    "descriptionUrlFilter": "https://link.clashofclans.com/en"
+  },
+  {
+    "id": 20,
+    "channelId": "UCwMPczpFS_-KUA9GkrqsNPA",
+    "name": "ClashWithHABIBI",
+    "webhookKey": "STRATEGY_WEBHOOK",
+    "message": "快去複製這個陣容！",
+    "showDescriptionUrls": true,
+    "descriptionUrlFilter": "https://link.clashofclans.com/en"
   }
 ]
