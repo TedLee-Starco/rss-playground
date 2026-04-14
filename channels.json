@@ -135,9 +135,12 @@
     "id": 20,
     "channelId": "UCwMPczpFS_-KUA9GkrqsNPA",
     "name": "ClashWithHABIBI",
-    "webhookKey": "STRATEGY_WEBHOOK",
-    "message": "快去複製這個陣容！",
-    "showDescriptionUrls": true,
-    "descriptionUrlFilter": "https://link.clashofclans.com/en"
+    "webhookKey": "STRATEGY_WEBHOOK"
+  },
+  {
+    "id": 21,
+    "channelId": "UC1Vvz_7lccJF9bUzB810BTA",
+    "name": "Applesauce",
+    "webhookKey": "STRATEGY_WEBHOOK"
   }
 ]
