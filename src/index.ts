@@ -13,6 +13,7 @@ interface Channel {
 interface Env {
   STATE: KVNamespace;
   YOUTUBE_API_KEY: string;
+  ERROR_WEBHOOK?: string;
   [key: string]: unknown;
 }
 
@@ -68,6 +69,11 @@ async function fetchWithTimeout(url: string, timeoutMs = 10000): Promise<Respons
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     return await fetch(url, { signal: controller.signal });
+  } catch (err) {
+    if (err instanceof Error && err.name === "AbortError") {
+      throw new Error(`Request timed out after ${timeoutMs}ms: ${url}`);
+    }
+    throw err;
   } finally {
     clearTimeout(timer);
   }
@@ -77,29 +83,37 @@ async function fetchVideoDetails(
   videoId: string,
   apiKey: string
 ): Promise<VideoDetails | null> {
-  const params = new URLSearchParams({
-    part: "contentDetails,snippet",
-    id: videoId,
-    key: apiKey,
-  });
-  const response = await fetchWithTimeout(
-    `https://www.googleapis.com/youtube/v3/videos?${params}`
-  );
-  if (!response.ok) return null;
+  try {
+    const params = new URLSearchParams({
+      part: "contentDetails,snippet",
+      id: videoId,
+      key: apiKey,
+    });
+    const response = await fetchWithTimeout(
+      `https://www.googleapis.com/youtube/v3/videos?${params}`
+    );
+    if (!response.ok) {
+      console.error(`YouTube API error for video ${videoId}: ${response.status}`);
+      return null;
+    }
 
-  const data = await response.json() as {
-    items?: Array<{
-      contentDetails: { duration: string };
-      snippet: { description: string };
-    }>;
-  };
-  const item = data.items?.[0];
-  if (!item) return null;
+    const data = await response.json() as {
+      items?: Array<{
+        contentDetails: { duration: string };
+        snippet: { description: string };
+      }>;
+    };
+    const item = data.items?.[0];
+    if (!item) return null;
 
-  return {
-    durationSeconds: parseIsoDurationSeconds(item.contentDetails.duration),
-    descriptionUrls: extractUrls(item.snippet.description),
-  };
+    return {
+      durationSeconds: parseIsoDurationSeconds(item.contentDetails.duration),
+      descriptionUrls: extractUrls(item.snippet.description),
+    };
+  } catch (err) {
+    console.error(`Failed to fetch video details for ${videoId}:`, err);
+    return null;
+  }
 }
 
 async function sendDiscordNotification(
@@ -177,13 +191,33 @@ async function checkChannel(channel: Channel, env: Env): Promise<void> {
         : details.descriptionUrls;
     }
 
-    await sendDiscordNotification(webhookUrl, channel.name, latest, message, descriptionUrls);
-    console.log(`New video on ${channel.name}: ${latest.title}`);
+    try {
+      await sendDiscordNotification(webhookUrl, channel.name, latest, message, descriptionUrls);
+      console.log(`New video on ${channel.name}: ${latest.title}`);
+      await env.STATE.put(channel.channelId, latest.videoId);
+    } catch (err) {
+      console.error(`Failed to notify for ${channel.name} (${latest.videoId}), will retry next run:`, err);
+    }
+    return;
   } else {
     console.log(`First run for ${channel.name}, storing ${latest.videoId}`);
   }
 
   await env.STATE.put(channel.channelId, latest.videoId);
+}
+
+async function reportError(env: Env, message: string): Promise<void> {
+  console.error(message);
+  if (!env.ERROR_WEBHOOK) return;
+  try {
+    await fetch(env.ERROR_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: `🚨 **yt-tracker error**\n${message}` }),
+    });
+  } catch {
+    // ignore, avoid infinite loop
+  }
 }
 
 export default {
@@ -193,9 +227,10 @@ export default {
     _ctx: ExecutionContext
   ): Promise<void> {
     for (const channel of channels as Channel[]) {
-      await checkChannel(channel, env).catch((err) =>
-        console.error(`Error checking ${channel.channelId}:`, err)
-      );
+      await checkChannel(channel, env).catch((err) => {
+        const msg = err instanceof Error ? err.message : String(err);
+        reportError(env, `[${channel.name}] ${msg}`);
+      });
     }
   },
 

@@ -142,5 +142,11 @@
     "channelId": "UC1Vvz_7lccJF9bUzB810BTA",
     "name": "Applesauce",
     "webhookKey": "STRATEGY_WEBHOOK"
+  },
+  {
+    "id": 22,
+    "channelId": "UC8rsKxt6aRWTYk6b_K3dHbg",
+    "name": "JudoSloth2",
+    "webhookKey": "CHANNEL_WEBHOOK"
   }
 ]

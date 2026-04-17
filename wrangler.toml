@@ -11,3 +11,4 @@ binding = "STATE"
 id = "e2e661703545421989dfbe96d8e2ef0e"
 
 # Set via: wrangler secret put DISCORD_WEBHOOK_URL
+# Set via: wrangler secret put ERROR_WEBHOOK
