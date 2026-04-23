@@ -51,11 +51,11 @@ jobs:
       - name: Setup TypeScript
         run: npm ci
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v6
       - name: uv sync
         run: uv sync
       - name: Run Prek
@@ -64,6 +64,8 @@ jobs:
           extra_args: --all-files
         env:
           SECRET_KEY: insecure-key-for-testing
+      - name: Run Python Unit Tests
+        run: uv run pytest -v
 
   deploy:
     name: Deploy Cloudflare
