@@ -1,17 +1,11 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
-
-# Virtual environments
-.venv
-
 # Node
 node_modules/
 .wrangler/
+
+# Python / tooling caches
+.ruff_cache/
+__pycache__/
+*.py[oc]
 
 # Secrets & runtime state
 .env
@@ -19,4 +13,4 @@ node_modules/
 token.json
 client_secret.json
 
-.ruff_cache
+.claude/
