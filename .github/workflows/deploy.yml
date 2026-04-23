@@ -51,11 +51,11 @@ jobs:
       - name: Setup TypeScript
         run: npm ci
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v6
       - name: uv sync
         run: uv sync
       - name: Run Prek
@@ -64,6 +64,24 @@ jobs:
           extra_args: --all-files
         env:
           SECRET_KEY: insecure-key-for-testing
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: typecheck
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      needs.get-changed-folder.outputs.py-any-changed == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: uv sync
+        run: uv sync
       - name: Run Python Unit Tests
         run: uv run pytest -v
 
