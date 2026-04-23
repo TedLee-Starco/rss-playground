@@ -65,7 +65,7 @@ jobs:
         env:
           SECRET_KEY: insecure-key-for-testing
       - name: Run Python Unit Tests
-        run: PYTHONPATH=scripts uv run python -m unittest discover -s scripts/tests -p "test_*.py" -v
+        run: uv run pytest -v
 
   deploy:
     name: Deploy Cloudflare
