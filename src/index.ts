@@ -152,10 +152,24 @@ async function sendDiscordNotification(
   }
 }
 
+async function reportError(env: Env, message: string): Promise<void> {
+  console.error(message);
+  if (!env.ERROR_WEBHOOK) return;
+  try {
+    await fetch(env.ERROR_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: `🚨 **yt-tracker error**\n${message}` }),
+    });
+  } catch {
+    // ignore, avoid infinite loop
+  }
+}
+
 async function checkChannel(channel: Channel, env: Env): Promise<void> {
   const response = await fetchWithTimeout(`${YOUTUBE_RSS_BASE}${channel.channelId}`);
   if (!response.ok) {
-    console.error(`Failed to fetch RSS for ${channel.name}: ${response.status}`);
+    await reportError(env, `[${channel.name}] RSS fetch failed: ${response.status}`);
     return;
   }
 
@@ -180,7 +194,7 @@ async function checkChannel(channel: Channel, env: Env): Promise<void> {
 
     const webhookUrl = env[channel.webhookKey] as string;
     if (!webhookUrl) {
-      console.error(`Secret "${channel.webhookKey}" not set for ${channel.name}`);
+      await reportError(env, `[${channel.name}] Secret "${channel.webhookKey}" not set`);
       return;
     }
     const message = channel.message ?? "各位成員快去學習新打法新戰術";
@@ -196,7 +210,8 @@ async function checkChannel(channel: Channel, env: Env): Promise<void> {
       console.log(`New video on ${channel.name}: ${latest.title}`);
       await env.STATE.put(channel.channelId, latest.videoId);
     } catch (err) {
-      console.error(`Failed to notify for ${channel.name} (${latest.videoId}), will retry next run:`, err);
+      const msg = err instanceof Error ? err.message : String(err);
+      await reportError(env, `[${channel.name}] Discord notify failed (${latest.videoId}), will retry next run: ${msg}`);
     }
     return;
   } else {
@@ -204,20 +219,6 @@ async function checkChannel(channel: Channel, env: Env): Promise<void> {
   }
 
   await env.STATE.put(channel.channelId, latest.videoId);
-}
-
-async function reportError(env: Env, message: string): Promise<void> {
-  console.error(message);
-  if (!env.ERROR_WEBHOOK) return;
-  try {
-    await fetch(env.ERROR_WEBHOOK, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: `🚨 **yt-tracker error**\n${message}` }),
-    });
-  } catch {
-    // ignore, avoid infinite loop
-  }
 }
 
 export default {

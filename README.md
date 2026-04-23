@@ -17,7 +17,7 @@
 ├── src/index.ts          # Cloudflare Worker 主程式
 ├── channels.json         # 追蹤的頻道設定
 ├── scripts/
-│   └── get_description.py  # 取得影片描述的本地工具腳本
+│   └── get_channel_id.py # 查詢 YouTube 頻道 ID 的工具腳本
 ├── wrangler.toml         # Cloudflare Worker 設定
 └── .dev.vars             # 本地開發用環境變數（不 commit）
 ```
@@ -119,12 +119,4 @@ curl "http://localhost:8787/seed-test"
 
 # 觸發 cron
 curl "http://localhost:8787/__scheduled"
-```
-
-## 工具腳本
-
-取得指定影片的 description：
-```bash
-# 在 .env 設定 YOUTUBE_API_KEY=AIza...
-uv run python scripts/get_description.py <video_id>
 ```
